@@ -1,11 +1,14 @@
 (defproject clj-thymeleaf-sample "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "Sample code for clj-thymeleaf"
+  :url "https://github.com/plakat/clj-thymeleaf-sample"
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [compojure "1.1.6"]
                  [hiccup "1.0.5"]
-                 [ring-server "0.3.1"]]
-  :plugins [[lein-ring "0.8.12"]]
+                 [ring-server "0.3.1"]
+                 [clj-thymeleaf "0.1.0-SNAPSHOT"]]
+  :scm {:name "git"
+        :url "https://github.com/plakat/clj-thymeleaf-sample"}
+  :plugins [[lein-ring "0.8.13"]]
   :ring {:handler clj-thymeleaf-sample.handler/app
          :init clj-thymeleaf-sample.handler/init
          :destroy clj-thymeleaf-sample.handler/destroy}

@@ -5,10 +5,18 @@
             [hiccup.middleware :refer [wrap-base-url]]
             [compojure.handler :as handler]
             [compojure.route :as route]
-            [clj-thymeleaf-sample.routes.home :refer [home-routes]]))
+            [clj-thymeleaf-sample.routes.home :refer [home-routes]]
+            [clj-thymeleaf.thymeleaf-wrapper :as thymeleaf-wrapper]
+            [clj-thymeleaf.thymeleaf :as thymeleaf]))
+
+
+(def thymeleaf-params {})
 
 (defn init []
-  (println "clj-thymeleaf-sample is starting"))
+  (println "clj-thymeleaf-sample is starting")
+  (println "initializing template engine")
+  (thymeleaf/init-template-engine thymeleaf-params)
+  )
 
 (defn destroy []
   (println "clj-thymeleaf-sample is shutting down"))
@@ -19,5 +27,6 @@
 
 (def app
   (-> (routes home-routes app-routes)
-      (handler/site)
-      (wrap-base-url)))
+    (handler/site)
+    (wrap-base-url)
+    (thymeleaf-wrapper/wrap)))
