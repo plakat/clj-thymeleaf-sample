@@ -10,11 +10,14 @@
             [clj-thymeleaf.thymeleaf :as thymeleaf]))
 
 
+;; By this map parameters can be passed to the thymeleaf templating engine.
+;; Currently init-template-engine ignores this.
 (def thymeleaf-params {})
 
 (defn init []
   (println "clj-thymeleaf-sample is starting")
   (println "initializing template engine")
+  ;; initialize templating engine:
   (thymeleaf/init-template-engine thymeleaf-params)
   )
 
@@ -29,4 +32,5 @@
   (-> (routes home-routes app-routes)
     (handler/site)
     (wrap-base-url)
+    ;; send responses through the thymeleaf wrapper:
     (thymeleaf-wrapper/wrap)))
